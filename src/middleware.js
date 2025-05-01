@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function middleware(request) {
+export function middleware() {
   // Check if the current path is the root ('/')
   //   if (request.nextUrl.pathname === "/") {
   //     // Redirect to /about
