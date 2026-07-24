@@ -2,91 +2,122 @@
 import mePic from "@/app/public/me_2024.jpg";
 import Image from "next/image";
 import {
+  Sparkles,
   Code,
-  Command,
-  Briefcase,
-  Mail,
-  CodeXml,
   Database,
   LaptopMinimal,
-  Monitor,
   Globe,
+  Monitor,
+  Mail,
+  ArrowRight,
 } from "lucide-react";
+
+const roles = [
+  { label: "AI-Assisted Development", Icon: Sparkles },
+  { label: "Frontend Developer", Icon: Code },
+  { label: "Backend Developer", Icon: Database },
+  { label: "Desktop Apps Developer", Icon: LaptopMinimal },
+];
+
+const stats = [
+  { value: "6+", label: "Years Desktop Development", Icon: Monitor },
+  { value: "2.5+", label: "Years Web Development", Icon: Globe },
+  { value: "1+", label: "Year AI-Assisted Development", Icon: Sparkles },
+];
 
 export default function HeroSection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-transparent"></div>
-      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
+    <section id="about" className="relative scroll-mt-24 overflow-hidden py-20">
+      {/* Background treatment */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-transparent" />
+      <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.07]" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12">
+      <div className="relative z-10">
+        <div className="flex flex-col-reverse items-center justify-between gap-12 lg:flex-row">
           {/* Content column */}
-          <div className="w-full lg:w-1/2 space-y-6">
-            <div className="bg-gray-900/70 backdrop-blur-sm p-8 rounded-xl border border-gray-800 shadow-lg transform transition-all hover:scale-[1.01] w-220">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                Hello I&apos;m{" "}
+          <div className="w-full space-y-8 lg:w-3/5">
+            <div className="rounded-2xl border border-gray-800 bg-gray-900/70 p-8 shadow-lg backdrop-blur-sm">
+              <p className="mb-3 text-sm font-medium tracking-wide text-gray-400">
+                Hello, I&apos;m
+              </p>
+
+              <h1 className="mb-4 text-4xl font-bold md:text-5xl lg:text-6xl">
                 <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                   Ron Cymond Llave
                 </span>
               </h1>
 
-              <div className="flex space-x-3 text-sm">
-                <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-blue-900/30 rounded-full border border-blue-500/30 mb-4 text-md">
-                  <Code size={24} className="text-blue-400" />
-                  <span className=" text-blue-300">Full Stack Developer</span>
-                </div>
-
-                <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-blue-900/30 rounded-full border border-blue-500/30 mb-4 text-md">
-                  <CodeXml size={24} className="text-blue-400" />
-                  <span className=" text-blue-300">Frontend Developer</span>
-                </div>
-                <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-blue-900/30 rounded-full border border-blue-500/30 mb-4 text-md">
-                  <Database size={24} className="text-blue-400" />
-                  <span className=" text-blue-300">Backend Developer</span>
-                </div>
-                <div className="inline-flex items-center space-x-2 px-3 py-1.5 bg-blue-900/30 rounded-full border border-blue-500/30 mb-4 ">
-                  <LaptopMinimal size={24} className="text-blue-400" />
-                  <span className=" text-blue-300">Desktop Apps Developer</span>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2 mb-6">
-                <Command size={24} className="text-blue-400" />
-                <p className="text-xl text-gray-300">
-                  A Full Stack,Frontend, and Backend Developer
-                </p>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-900/30 px-4 py-2">
+                <Sparkles size={18} className="text-cyan-300" />
+                <span className="font-semibold text-blue-200">
+                  AI-Powered Full Stack Developer
+                </span>
               </div>
 
-              <p className="text-lg text-gray-400">
-                For Desktop and Web Development
+              <p className="mb-6 text-lg leading-relaxed text-gray-300">
+                I&apos;m a full stack developer who builds mobile-first web
+                applications with Next.js, TypeScript and Supabase, backed by
+                over six years of Windows desktop development in manufacturing
+                and line-of-business systems. I use AI
+                confidently across all of my professional work — Claude Code
+                drives my day-to-day development, from MCP integrations to
+                multi-agent sessions, and it has become a core part of how I
+                design, build and ship software.
               </p>
+
+              <div className="flex flex-wrap gap-2">
+                {roles.map(({ label, Icon }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-950/40 px-3 py-1.5 text-sm text-blue-300"
+                  >
+                    <Icon size={15} className="text-blue-400" />
+                    {label}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            <div className="hidden lg:flex mt-8 space-x-4">
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Monitor className="w-5 h-5" />
-                <span>6 Years Desktop Development Experience</span>
+            {/* Stats + call to action */}
+            <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+                {stats.map(({ value, label, Icon }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <Icon className="h-5 w-5 shrink-0 text-blue-400" />
+                    <div>
+                      <p className="text-xl font-bold text-white">{value}</p>
+                      <p className="text-sm text-gray-400">{label}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center space-x-2 text-gray-400">
-                <Globe className="w-5 h-5" />
-                <span>1 Year Web Development Experience</span>
-              </div>
+
+              <a
+                href="#contact"
+                className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-700"
+              >
+                <Mail size={18} />
+                Get in touch
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
+              </a>
             </div>
           </div>
 
           {/* Image column */}
-          <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              {/* Glowing effect behind image */}
-              <div className="absolute -inset-0.5 bg-blue-500 rounded-full opacity-20 blur-xl animate-pulse"></div>
-              <div className="relative rounded-full overflow-hidden border-4 border-gray-800 ring-2 ring-blue-500/30 shadow-lg shadow-blue-900/20 w-full h-full">
+          <div className="flex w-full justify-center lg:w-2/5">
+            <div className="relative h-64 w-64 md:h-80 md:w-80">
+              <div className="absolute -inset-0.5 animate-pulse rounded-full bg-blue-500 opacity-20 blur-xl" />
+              <div className="relative h-full w-full overflow-hidden rounded-full border-4 border-gray-800 shadow-lg shadow-blue-900/20 ring-2 ring-blue-500/30">
                 <Image
                   src={mePic}
                   alt="Ron Cymond Llave"
-                  width={320}
-                  height={320}
+                  fill
+                  sizes="(max-width: 768px) 16rem, 20rem"
                   className="object-cover"
+                  priority
                 />
               </div>
             </div>

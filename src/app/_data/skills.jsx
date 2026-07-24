@@ -1,106 +1,105 @@
-// Web Dev
-import iconHTML from "@/app/public/HTML5.png";
-import iconCSS from "@/app/public/CSS3.png";
-import iconJS from "@/app/public/CSS3.png";
-import iconReactJS from "@/app/public/React.png";
-import iconNodeJS from "@/app/public/React.png";
-import iconNextJS from "@/app/public/Nextjs.png";
-import iconTailwindCSS from "@/app/public/Tailwind CSS.png";
-import iconMongoDB from "@/app/public/MongoDB.png";
+// _data/skills.jsx
+// Icons come from react-icons / lucide-react rather than bitmap files so every
+// skill renders at the same weight and new entries need no asset work.
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiPwa,
+  SiDotnet,
+  SiSharp,
+  SiSupabase,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiDocker,
+  SiGooglecloud,
+  SiGit,
+  SiClaude,
+  SiGooglegemini,
+} from "react-icons/si";
+import { DiMsqlServer } from "react-icons/di";
+import { VscAzureDevops } from "react-icons/vsc";
+import { Drama, Server, Monitor, Boxes, Network } from "lucide-react";
 
-//Desktop
-import iconNet from "@/app/public/NET.png";
-import iconCSharp from "@/app/public/CSharp.png";
-//Database
-import iconMSSQL from "@/app/public/MSSQL.png";
-import iconMySQL from "@/app/public/MySQL.png";
-import iconSupabase from "@/app/public/Supabase.png";
-
-//Devops
-import iconAzure from "@/app/public/Azure.png";
-import iconGit from "@/app/public/Git.png";
 const webDevelopment = [
-  {
-    name: "HTML",
-    icon: iconHTML,
-  },
-  {
-    name: "CSS",
-    icon: iconCSS,
-  },
-  {
-    name: "JavaScript",
-    icon: iconJS,
-  },
-  {
-    name: "ReactJS",
-    icon: iconReactJS,
-  },
-  {
-    name: "NodeJS",
-    icon: iconNodeJS,
-  },
-  {
-    name: "NextJS",
-    icon: iconNextJS,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: iconTailwindCSS,
-  },
+  { name: "HTML5", Icon: SiHtml5, color: "#E34F26" },
+  { name: "CSS3", Icon: SiCss3, color: "#1572B6" },
+  { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+  { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+  { name: "React", Icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF" },
+  { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E" },
+  { name: "Tailwind CSS", Icon: SiTailwindcss, color: "#38BDF8" },
+  { name: "PWA", Icon: SiPwa, color: "#5A0FC8" },
+  { name: "Playwright", Icon: Drama, color: "#2EAD33" },
 ];
+
+const aiEngineering = [
+  { name: "Claude Code", Icon: SiClaude, color: "#D97757" },
+  { name: "MCP Integration", Icon: Network, color: "#D97757" },
+  { name: "Multi-Agent Sessions", Icon: Boxes, color: "#D97757" },
+  { name: "Google Gemini", Icon: SiGooglegemini, color: "#8E75F8" },
+];
+
 const desktopDevelopment = [
-  {
-    name: ".NET",
-    icon: iconNet,
-  },
-  {
-    name: "C#",
-    icon: iconCSharp,
-  },
+  { name: ".NET", Icon: SiDotnet, color: "#512BD4" },
+  { name: "C#", Icon: SiSharp, color: "#68217A" },
+  { name: "WPF", Icon: Monitor, color: "#0078D4" },
 ];
+
 const database = [
-  {
-    name: "Microsoft SQL",
-    icon: iconMSSQL,
-  },
-  {
-    name: "MySQL",
-    icon: iconMySQL,
-  },
-  {
-    name: "Supabase",
-    icon: iconSupabase,
-  },
-  {
-    name: "Mongo DB",
-    icon: iconMongoDB,
-  },
+  { name: "Supabase", Icon: SiSupabase, color: "#3ECF8E" },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "Microsoft SQL", Icon: DiMsqlServer, color: "#CC2927" },
+  { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+  { name: "MongoDB", Icon: SiMongodb, color: "#47A248" },
 ];
 
 const devOps = [
-  {
-    name: "Azure DevOps",
-    icon: iconAzure,
-  },
-  {
-    name: "Git",
-    icon: iconGit,
-  },
+  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "Coolify", Icon: Server, color: "#8B5CF6" },
+  { name: "Google Cloud OAuth", Icon: SiGooglecloud, color: "#4285F4" },
+  { name: "Azure DevOps", Icon: VscAzureDevops, color: "#0078D4" },
+  { name: "Git", Icon: SiGit, color: "#F05032" },
 ];
 
-export function skillsWebDev() {
-  return webDevelopment;
-}
-
-export function skillsDesktopDev() {
-  return desktopDevelopment;
-}
-
-export function skillsDatabase() {
-  return database;
-}
-
-export function skillsdevOps() {
-  return devOps;
-}
+export const skillCategories = [
+  {
+    id: "ai",
+    title: "AI-Assisted Engineering",
+    caption:
+      "Claude Code drives my day-to-day development — MCP server setups, multi-agent sessions, and research. Gemini handles audio diarization and transcription.",
+    skills: aiEngineering,
+    featured: true,
+  },
+  {
+    id: "web",
+    title: "Web Development",
+    caption: "Mobile-first apps built on the Next.js App Router",
+    skills: webDevelopment,
+  },
+  {
+    id: "database",
+    title: "Databases",
+    caption: "Relational and document stores, self-hosted or managed",
+    skills: database,
+  },
+  {
+    id: "devops",
+    title: "DevOps & Deployment",
+    caption: "Containerised, self-hosted delivery and source control",
+    skills: devOps,
+  },
+  {
+    id: "desktop",
+    title: "Desktop Development",
+    caption: "Windows line-of-business applications",
+    skills: desktopDevelopment,
+  },
+];

@@ -1,35 +1,30 @@
 // components/sections/SkillsSection.jsx
 import SkillCategory from "../ui/SkillCategory";
-import {
-  skillsDatabase,
-  skillsDesktopDev,
-  skillsdevOps,
-  skillsWebDev,
-} from "@/app/_data/skills";
+import { skillCategories } from "@/app/_data/skills";
+
 export default function SkillsSection() {
+  const featured = skillCategories.filter((category) => category.featured);
+  const rest = skillCategories.filter((category) => !category.featured);
+
   return (
-    <section id="skills" className="py-12">
-      <h2 className="text-3xl font-bold text-white mb-8 text-center">
-        Tech Skills
-      </h2>
+    <section id="skills" className="scroll-mt-24 py-16">
+      <div className="mb-10 text-center">
+        <h2 className="text-3xl font-bold text-white md:text-4xl">
+          Tech Skills
+        </h2>
+        <div className="mx-auto mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" />
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <SkillCategory
-          title="Web Development Tech Skills"
-          skills={skillsWebDev()}
-        />
+      <div className="space-y-6">
+        {featured.map((category) => (
+          <SkillCategory key={category.id} {...category} />
+        ))}
 
-        <SkillCategory
-          title="Desktop Application Development Tech Skills"
-          skills={skillsDesktopDev()}
-        />
-
-        <SkillCategory title="Database Tech Skills" skills={skillsDatabase()} />
-
-        <SkillCategory
-          title="Software Repository Management Tech Skills"
-          skills={skillsdevOps()}
-        />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {rest.map((category) => (
+            <SkillCategory key={category.id} {...category} />
+          ))}
+        </div>
       </div>
     </section>
   );

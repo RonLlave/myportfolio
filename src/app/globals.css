@@ -1,16 +1,11 @@
 @import "tailwindcss";
 
+/* The portfolio is a dark-theme site, so these are defined once rather than
+   only inside a prefers-color-scheme block (which previously left the body
+   variables undefined in light mode). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-     --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 30, 30, 30;
-  }
+  --background: #111827;
+  --foreground: #f3f4f6;
 }
 
 @layer components {
@@ -20,15 +15,25 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    )
-    fixed;
+  color: var(--foreground);
+  background-color: var(--background);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Respect users who have asked the OS to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

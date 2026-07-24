@@ -2,7 +2,14 @@
 "use client";
 
 import { useState } from "react";
-import { FaLinkedin, FaFacebook, FaEnvelope, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaFacebook, FaGithub } from "react-icons/fa";
+import { socialLinks } from "@/app/_data/social";
+
+const icons = {
+  linkedin: FaLinkedin,
+  github: FaGithub,
+  facebook: FaFacebook,
+};
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,13 +20,6 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState(null);
-
-  // Add your social media links here
-  const socialLinks = {
-    linkedin: "https://www.linkedin.com/in/ron-cymond-llave-58aa2232b/",
-    facebook: "https://www.facebook.com/roncymond.llave",
-    github: "https://github.com/RonLlave",
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -179,35 +179,21 @@ export default function ContactForm() {
           Connect with me
         </h3>
         <div className="flex flex-wrap gap-4">
-          <a
-            href={socialLinks.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-[#0077B5] hover:bg-[#0077B5]/90 text-white rounded-md transition-colors"
-          >
-            <FaLinkedin className="text-xl" />
-            <span>LinkedIn</span>
-          </a>
-
-          <a
-            href={socialLinks.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-[#4267B2] hover:bg-[#4267B2]/90 text-white rounded-md transition-colors"
-          >
-            <FaFacebook className="text-xl" />
-            <span>Facebook</span>
-          </a>
-
-          <a
-            href={socialLinks.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 bg-[#333] hover:bg-[#333]/90 text-white rounded-md transition-colors"
-          >
-            <FaGithub className="text-xl" />
-            <span>GitHub</span>
-          </a>
+          {socialLinks.map(({ id, label, href, className }) => {
+            const Icon = icons[id];
+            return (
+              <a
+                key={id}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 px-4 py-2 text-white rounded-md transition-colors ${className}`}
+              >
+                <Icon className="text-xl" />
+                <span>{label}</span>
+              </a>
+            );
+          })}
         </div>
       </div>
     </div>
